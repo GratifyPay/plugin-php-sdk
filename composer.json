@@ -1,0 +1,19 @@
+{
+    "name": "softbuild/gratify-sdk",
+    "type": "library",
+    "require": {
+        "php": "^7.1",
+        "ext-curl": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "Gratify\\PhpSdk\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Dzmitry Urbanovich",
+            "email": "dev@soft-build.by"
+        }
+    ]
+}
