@@ -11,5 +11,5 @@ Need to add to composer.json the repository:
 ```
 after that execute next command:
 ```shell
-composer require softbuild/gratify-php-sdk:^1.0
+composer require gratifypay/gratify-php-sdk:^1.0
 ```
