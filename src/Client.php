@@ -32,13 +32,13 @@ class Client extends Request
     const SANDBOX_US_WEB_URL = 'https://portal.sandbox.gratify.com';*/
 
     //todo remove after production realise
-    const SANDBOX_API_ENDPOINT = 'https://api.dev.gratifypay.com';
+    const SANDBOX_API_ENDPOINT = 'https://api.gratifypay.com';
 
-    const SANDBOX_API_US_ENDPOINT = 'https://api.dev.gratifypay.com';
+    const SANDBOX_API_US_ENDPOINT = 'https://api.gratifypay.com';
 
-    const SANDBOX_WEB_URL = 'https://app.dev.gratifypay.com';
+    const SANDBOX_WEB_URL = 'https://app.gratifypay.com';
 
-    const SANDBOX_US_WEB_URL = 'https://app.dev.gratifypay.com';
+    const SANDBOX_US_WEB_URL = 'https://app.gratifypay.com';
 
     const TYPE_CONTENT = 'application/json';
 
