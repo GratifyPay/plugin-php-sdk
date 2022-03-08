@@ -1,5 +1,5 @@
 {
-    "name": "gratify/gratify-php-sdk",
+    "name": "gratifypay/plugin-php-sdk",
     "type": "library",
     "require": {
         "php": "^8.1",
