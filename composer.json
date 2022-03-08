@@ -1,8 +1,8 @@
 {
-    "name": "softbuild/gratify-php-sdk",
+    "name": "gratify/gratify-php-sdk",
     "type": "library",
     "require": {
-        "php": "^7.1",
+        "php": "^8.1",
         "ext-curl": "*"
     },
     "autoload": {
@@ -12,8 +12,8 @@
     },
     "authors": [
         {
-            "name": "Dzmitry Urbanovich",
-            "email": "dev@soft-build.by"
+            "name": "Gratify Pay",
+            "email": "support@gratifypay.com"
         }
     ]
 }
