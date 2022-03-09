@@ -1,4 +1,8 @@
-# Set Up
+# Build
+- commit and push to origin
+- create new github release, give it an incremented version
+
+# Usage
 
 Need to add to composer.json the repository:
 ```shell

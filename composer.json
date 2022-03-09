@@ -1,19 +1,20 @@
 {
-    "name": "gratifypay/plugin-php-sdk",
-    "type": "library",
-    "require": {
-        "php": "^8.1",
-        "ext-curl": "*"
-    },
-    "autoload": {
-        "psr-4": {
-            "Gratify\\PhpSdk\\": "src/"
-        }
-    },
-    "authors": [
-        {
-            "name": "Gratify Pay",
-            "email": "support@gratifypay.com"
-        }
-    ]
+  "name": "gratifypay/plugin-php-sdk",
+  "version": "1.0.5",
+  "type": "library",
+  "require": {
+    "php": "^7.3",
+    "ext-curl": "*"
+  },
+  "autoload": {
+    "psr-4": {
+      "Gratify\\PhpSdk\\": "src/"
+    }
+  },
+  "authors": [
+    {
+      "name": "Gratify Pay",
+      "email": "support@gratifypay.com"
+    }
+  ]
 }
