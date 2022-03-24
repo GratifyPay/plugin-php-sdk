@@ -1,6 +1,6 @@
 <?php
 
-namespace Gratify\PhpSdk;
+namespace GratifyPay\PhpSdk;
 
 /**
  * Class Request
