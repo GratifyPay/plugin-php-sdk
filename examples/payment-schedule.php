@@ -3,7 +3,7 @@
 require_once dirname(__FILE__) . '/../vendor/autoload.php';
 require_once dirname(__FILE__) . '/env.php';
 
-use Gratify\PhpSdk\Client;
+use GratifyPay\PhpSdk\Client;
 
 try {
     $client = new Client(

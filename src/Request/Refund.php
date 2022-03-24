@@ -1,6 +1,6 @@
 <?php
 
-namespace Gratify\PhpSdk\Request;
+namespace GratifyPay\PhpSdk\Request;
 
 class Refund
 {

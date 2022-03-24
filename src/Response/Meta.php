@@ -1,6 +1,6 @@
 <?php
 
-namespace Gratify\PhpSdk\Response;
+namespace GratifyPay\PhpSdk\Response;
 
 /**
  *
