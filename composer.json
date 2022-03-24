@@ -1,6 +1,8 @@
 {
   "name": "gratifypay/plugin-php-sdk",
-  "version": "1.0.5",
+  "description": "Gratify Pay PHP SDK",
+  "license": "AFL-3.0",
+  "version": "1.0.6",
   "type": "library",
   "require": {
     "php": "^7.3",
@@ -8,7 +10,7 @@
   },
   "autoload": {
     "psr-4": {
-      "Gratify\\PhpSdk\\": "src/"
+      "GratifyPay\\PhpSdk\\": "src/"
     }
   },
   "authors": [
