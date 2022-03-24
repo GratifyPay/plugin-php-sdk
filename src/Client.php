@@ -1,14 +1,14 @@
 <?php
 
-namespace Gratify\PhpSdk;
+namespace GratifyPay\PhpSdk;
 
-use Gratify\PhpSdk\Request\OrderInitialize as OrderInitializeRequest;
-use Gratify\PhpSdk\Request\Refund as RefundRequest;
-use Gratify\PhpSdk\Response\ConfirmOrder;
-use Gratify\PhpSdk\Response\Refund as RefundResponse;
-use Gratify\PhpSdk\Response\OrderInitialize as OrderInitializeResponse;
-use Gratify\PhpSdk\Response\Merchant;
-use Gratify\PhpSdk\Response\PaymentSchedules;
+use GratifyPay\PhpSdk\Request\OrderInitialize as OrderInitializeRequest;
+use GratifyPay\PhpSdk\Request\Refund as RefundRequest;
+use GratifyPay\PhpSdk\Response\ConfirmOrder;
+use GratifyPay\PhpSdk\Response\Refund as RefundResponse;
+use GratifyPay\PhpSdk\Response\OrderInitialize as OrderInitializeResponse;
+use GratifyPay\PhpSdk\Response\Merchant;
+use GratifyPay\PhpSdk\Response\PaymentSchedules;
 
 class Client extends Request
 {
