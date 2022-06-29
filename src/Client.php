@@ -57,6 +57,7 @@ class Client extends Request
 
     /**
      * @param float $amount
+     * @param bool $formatted
      * @return PaymentSchedules
      * @throws \Exception
      */
