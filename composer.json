@@ -2,7 +2,7 @@
   "name": "gratifypay/plugin-php-sdk",
   "description": "Gratify Pay PHP SDK",
   "license": "AFL-3.0",
-  "version": "1.0.8 ",
+  "version": "1.0.10 ",
   "type": "library",
   "require": {
     "php": ">=7.3",
