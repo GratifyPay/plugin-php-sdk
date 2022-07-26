@@ -2,73 +2,88 @@
 
 namespace GratifyPay\PhpSdk\Response;
 
+use GratifyPay\PhpSdk\Response\Schedule;
+use GratifyPay\PhpSdk\Response\Meta;
+
 class PaymentSchedule
 {
     /**
-     * @var string
+     * @var Schedule[]
      */
-    protected $date;
+    protected array $schedule;
 
     /**
-     * @var double
+     * @var Meta
      */
-    protected $amount;
+    protected Meta $meta;
 
-    protected $paymentNumber;
+    /**
+     * @return Schedule[]
+     */
+    public function getSchedule() : array
+    {
+        return $this->schedule;
+    }
 
-    protected $dueFromNow;
-
-    protected $totalAmount;
+    /**
+     * @return Meta
+     */
+    public function getMeta(): Meta
+    {
+        return $this->meta;
+    }
 
     /**
      * @param array $schedule
      */
-    public function __construct(array $schedule)
+    public function __construct(array $paymentSchedule)
     {
-        $this->date = $schedule['date'] ?? null;
-        $this->amount = $schedule['amount'] ?? null;
-        $this->paymentNumber = $schedule['paymentNumber'] ?? null;
-        $this->dueFromNow = $schedule['dueFromNow'] ?? null;
-        $this->totalAmount = $schedule['totalAmount'] ?? null;
+        foreach ($paymentSchedule['schedule'] as $schedule) {
+            $this->schedule[] = new Schedule($schedule);
+        }
+
+        if (isset($paymentSchedule['meta'])) {
+            $this->meta = new Meta($paymentSchedule['meta']);
+        }
+    }
+
+
+    /**
+     * To associated array
+     * 
+     * @return array
+     */
+    public function toArray(): array {
+        $array = [
+            "schedule" => [],
+            "meta" => []
+        ];
+        foreach($this->schedule as $s){
+            $array["schedule"][] = $s->toArray();
+        }
+        if(!empty($this->meta))
+        {
+            $array["meta"] = $this->meta->toArray();
+        }
+        return $array;
     }
 
     /**
+     * to JSON
+     * 
      * @return string
      */
-    public function getDate()
-    {
-        return $this->date;
+    public function toJSON(): string {
+        return json_encode($this->toArray());
     }
 
     /**
-     * @return float
+     * Static to JSON
+     * 
+     * @param PaymentSchedule $paymentSchedule
+     * @return string
      */
-    public function getAmount()
-    {
-        return $this->amount;
-    }
-
-    /**
-     * @return mixed|null
-     */
-    public function getPaymentNumber()
-    {
-        return $this->paymentNumber;
-    }
-
-    /**
-     * @return mixed|null
-     */
-    public function getDueFromNow()
-    {
-        return $this->dueFromNow;
-    }
-
-    /**
-     * @return mixed|null
-     */
-    public function getTotalAmount()
-    {
-        return $this->totalAmount;
+    public static function paymentScheduleToJSON(PaymentSchedule $paymentSchedule): string {
+        return $paymentSchedule->toJSON();
     }
 }

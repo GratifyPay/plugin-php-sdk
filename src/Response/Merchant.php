@@ -2,32 +2,15 @@
 
 namespace GratifyPay\PhpSdk\Response;
 
+use GratifyPay\PhpSdk\Address;
+use GratifyPay\PhpSdk\Response\SettlementDetails;
+
 class Merchant
 {
     /**
      * @var string|null
      */
     protected $id;
-    /**
-     * @var string|null
-     */
-    protected $sk;
-    /**
-     * @var string|null
-     */
-    protected $userId;
-    /**
-     * @var string|null
-     */
-    protected $merchantId;
-    /**
-     * @var string|null
-     */
-    protected $GS2PK;
-    /**
-     * @var string|null
-     */
-    protected $createdAt;
     /**
      * @var string|null
      */
@@ -63,17 +46,17 @@ class Merchant
      */
     protected $maxAmount;
     /**
-     * @var string|null
+     * @var SettlementDetails
      */
-    protected $amId;
+    protected $settlementDetails;
     /**
      * @var string|null
      */
-    protected $created;
+    protected $merchantState;
     /**
      * @var string|null
      */
-    protected $updated;
+    protected $currency;
 
     /**
      * @param array $fields
@@ -81,11 +64,6 @@ class Merchant
     public function __construct(array $fields)
     {
         $this->id = $fields['id'] ?? null;
-        $this->sk = $fields['sk'] ?? null;
-        $this->userId = $fields['userId'] ?? null;
-        $this->merchantId = $fields['merchantId'] ?? null;
-        $this->GS2PK = $fields['GS2PK'] ?? null;
-        $this->createdAt = $fields['createdAt'] ?? null;
         $this->name = $fields['name'] ?? null;
         $this->email = $fields['email'] ?? null;
         $this->phone = $fields['phone'] ?? null;
@@ -98,9 +76,13 @@ class Merchant
         $this->numPayments = $fields['numPayments'] ?? null;
         $this->minAmount = $fields['minAmount'] ?? null;
         $this->maxAmount = $fields['maxAmount'] ?? null;
-        $this->amId = $fields['amId'] ?? null;
-        $this->created = $fields['created'] ?? null;
-        $this->updated = $fields['updated'] ?? null;
+
+        if (isset($fields['settlementDetails'])) {
+            $this->settlementDetails = new SettlementDetails($fields['settlementDetails']);
+        }
+
+        $this->merchantState = $fields['merchantState'] ?? null;
+        $this->currency = $fields['currency'] ?? null;
     }
 
     /**
@@ -109,46 +91,6 @@ class Merchant
     public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * @return string|null
-     */
-    public function getSk()
-    {
-        return $this->sk;
-    }
-
-    /**
-     * @return string|null
-     */
-    public function getUserId()
-    {
-        return $this->userId;
-    }
-
-    /**
-     * @return string|null
-     */
-    public function getMerchantId()
-    {
-        return $this->merchantId;
-    }
-
-    /**
-     * @return string|null
-     */
-    public function getGS2PK()
-    {
-        return $this->GS2PK;
-    }
-
-    /**
-     * @return string|null
-     */
-    public function getCreatedAt()
-    {
-        return $this->createdAt;
     }
 
     /**
@@ -216,26 +158,26 @@ class Merchant
     }
 
     /**
-     * @return string|null
+     * @return SettlementDetails
      */
-    public function getAmId()
+    public function getSettlementDetails(): ?SettlementDetails
     {
-        return $this->amId;
+        return $this->settlementDetails;
     }
 
     /**
      * @return string|null
      */
-    public function getCreated()
+    public function getMerchantState()
     {
-        return $this->created;
+        return $this->merchantState;
     }
 
     /**
      * @return string|null
      */
-    public function getUpdated()
+    public function getCurrency()
     {
-        return $this->updated;
+        return $this->currency;
     }
 }

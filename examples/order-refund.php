@@ -13,8 +13,7 @@ try {
     $client = new Client(
         MERCHANT_ID,
         SECRET_KEY,
-        IS_LIVE,
-        IS_US
+        IS_LIVE
     );
 
     $refund = new Refund();

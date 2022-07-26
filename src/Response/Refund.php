@@ -4,10 +4,14 @@ namespace GratifyPay\PhpSdk\Response;
 
 class Refund
 {
+    const RESULT_SUCCESS = "SUCCESS";
+    const RESULT_FAILURE = "FAILURE";
+    const RESULT_INCOMPLETE = "INCOMPLETE";
+
     /**
      * @var string|null
      */
-    protected $refundStatus;
+    protected $result;
 
     /**
      * @var string|null
@@ -15,30 +19,44 @@ class Refund
     protected $message;
 
     /**
-     * @var bool
+     * @var string
      */
-    protected $success;
+    protected $orderId;
 
-    public const REFUND_REFUNDED = 'REFUNDED';
-    public const REFUND_DECLINED = 'DECLINED';
-    public const REFUND_ERROR = 'ERROR';
+    /**
+     * @var string
+     */
+    protected $merchantReference;
+
+    /**
+     * @var float
+     */
+    protected $amount;
+
+    /**
+     * @var string
+     */
+    protected $currency;
 
     /**
      * @param array $fields
      */
     public function __construct(array $fields)
     {
-        $this->refundStatus = $fields['refundStatus'] ?? null;
+        $this->result = $fields['result'] ?? null;
         $this->message = $fields['message'] ?? null;
-        $this->success = $fields['success'] ?? null;
+        $this->orderId = $fields['orderId'] ?? null;
+        $this->merchantReference = $fields['merchantReference'] ?? null;
+        $this->amount = $fields['amount'] ?? null;
+        $this->currency = $fields['currency'] ?? null;
     }
 
     /**
      * @return mixed
      */
-    public function getRefundStatus()
+    public function getResult()
     {
-        return $this->refundStatus;
+        return $this->result;
     }
 
     /**
@@ -50,10 +68,50 @@ class Refund
     }
 
     /**
-     * @return bool
+     * @return string
      */
-    public function isSuccess()
+    public function getOrderId()
     {
-        return $this->success;
+        return $this->orderId;
+    }
+
+    /**
+     * @return string
+     */
+    public function getMerchantReference()
+    {
+        return $this->merchantReference;
+    }
+
+    /**
+     * @return float
+     */
+    public function getAmount()
+    {
+        return $this->amount;
+    }
+
+    /**
+     * @return string
+     */
+    public function getCurrency()
+    {
+        return $this->currency;
+    }
+
+    /**
+     * Return a associated array respresentation of this object
+     * @return array
+     */
+    public function toArray()
+    {
+        return [
+            "Result"            =>$this->result, 
+            "Message"           =>$this->message, 
+            "OrderId"           =>$this->orderId, 
+            "MerchantReference" =>$this->merchantReference, 
+            "Amount"            =>$this->amount, 
+            "Currency"          =>$this->currency
+        ];
     }
 }

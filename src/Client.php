@@ -8,41 +8,23 @@ use GratifyPay\PhpSdk\Response\ConfirmOrder;
 use GratifyPay\PhpSdk\Response\Refund as RefundResponse;
 use GratifyPay\PhpSdk\Response\OrderInitialize as OrderInitializeResponse;
 use GratifyPay\PhpSdk\Response\Merchant;
-use GratifyPay\PhpSdk\Response\PaymentSchedules;
+use GratifyPay\PhpSdk\Response\PaymentSchedule;
 
 class Client extends Request
 {
     //Production endpoints
     const API_ENDPOINT = 'https://api.gratifypay.com';
 
-    const API_US_ENDPOINT = 'https://api.us.gratify.com';
-
     const WEB_URL = 'https://app.gratifypay.com';
 
-    const US_WEB_URL = 'https://portal.gratify.com';
-
     //Sandbox endpoints
-    //todo enable after production realise
-    /*const SANDBOX_API_ENDPOINT = 'https://api.gratifypay.com';
+    //const SANDBOX_API_ENDPOINT = 'https://api.gratifypay.com';
+    const SANDBOX_API_ENDPOINT = 'https://api.dev.gratifypay.com';
 
-    const SANDBOX_API_US_ENDPOINT = 'https://api.us-sandbox.gratify.com';
-
-    const SANDBOX_WEB_URL = 'https://app.gratifypay.com';
-
-    const SANDBOX_US_WEB_URL = 'https://portal.sandbox.gratify.com';*/
-
-    //todo remove after production realise
-    const SANDBOX_API_ENDPOINT = 'https://api.gratifypay.com';
-
-    const SANDBOX_API_US_ENDPOINT = 'https://api.gratifypay.com';
-
-    const SANDBOX_WEB_URL = 'https://app.gratifypay.com';
-
-    const SANDBOX_US_WEB_URL = 'https://app.gratifypay.com';
+    //const SANDBOX_WEB_URL = 'https://app.gratifypay.com';
+    const SANDBOX_WEB_URL = 'https://app.dev.gratifypay.com';
 
     const TYPE_CONTENT = 'application/json';
-
-    protected $privateApiKey = '';
 
     /**
      * @return Merchant
@@ -57,14 +39,17 @@ class Client extends Request
 
     /**
      * @param float $amount
-     * @return PaymentSchedules
+     * @param bool $formatted
+     * @return PaymentSchedule
      * @throws \Exception
      */
-    public function getPaymentsSchedule(float $amount, bool $formatted = true): PaymentSchedules
+    public function getPaymentsSchedule(float $amount, bool $formatted = true): PaymentSchedule
     {
         $result = $this->request('GET', '/merchant/payment-schedule?amount=' . $amount . '&formatted=' . ($formatted ? 'true' : 'false'));
 
-        return new PaymentSchedules($result);
+        $paymentSchedule = new PaymentSchedule($result);
+
+        return $paymentSchedule;
     }
 
     /**
@@ -98,13 +83,16 @@ class Client extends Request
     }
 
     /**
-     * @param RefundRequest $refund
+     * Request a Refund
+     * 
+     * @param string $merchantId
+     * @param string orderId
      * @return RefundResponse
      * @throws \Exception
      */
-    public function orderRefund(RefundRequest $refund): RefundResponse
+    public function orderRefund(string $merchantId, string $orderId): RefundResponse
     {
-        $result = $this->request('POST', '/merchant/order/order-refund', $refund);
+        $result = $this->request('POST', "/merchant/{$merchantId}/order/{$orderId}/order-refund");
 
         return new RefundResponse($result);
     }
@@ -124,9 +112,7 @@ class Client extends Request
             return $orderMapId;
         }
 
-        $link = $this->isUS
-            ? ($this->isLive ? static::US_WEB_URL : static::SANDBOX_US_WEB_URL)
-            : ($this->isLive ? static::WEB_URL : static::SANDBOX_WEB_URL);
+        $link = ($this->prod ? static::WEB_URL : static::SANDBOX_WEB_URL);
 
         return sprintf('%s/checkout?o=%s', $link, $orderMapId);
     }
