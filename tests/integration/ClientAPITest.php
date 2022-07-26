@@ -14,9 +14,6 @@ class ClientAPITest extends TestCase
     private static $secretKey;
     protected static $client;
 
-    //"merchant_20tDfdLtIeHux3kEO4Fumz";
-    //"gpKey_75BRrcncNUAhnNu2ZxrOhQ";
-
     public static function setUpBeforeClass(): void
     {
         self::$merchantId = getenv('MERCHANT_ID');
