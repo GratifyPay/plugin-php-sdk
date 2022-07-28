@@ -6,14 +6,13 @@ require_once dirname(__FILE__) . '/env.php';
 use GratifyPay\PhpSdk\Client;
 use GratifyPay\PhpSdk\Request\Item;
 use GratifyPay\PhpSdk\Request\OrderInitialize;
-use GratifyPay\PhpSdk\Request\ShippingAddress;
+use GratifyPay\PhpSdk\Address as ShippingAddress;
 
 try {
     $client = new Client(
         MERCHANT_ID,
         SECRET_KEY,
-        IS_LIVE,
-        IS_US
+        IS_LIVE
     );
 
     $shippingAddress = new ShippingAddress();

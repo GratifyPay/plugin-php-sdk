@@ -1,8 +1,8 @@
 <?php
 
-namespace GratifyPay\PhpSdk\Request;
+namespace GratifyPay\PhpSdk;
 
-class ShippingAddress
+class Address
 {
     /**
      * @var string
@@ -36,9 +36,9 @@ class ShippingAddress
 
     /**
      * @param string $line1
-     * @return ShippingAddress
+     * @return Address
      */
-    public function setLine1(string $line1): ShippingAddress
+    public function setLine1(string $line1): Address
     {
         $this->line1 = $line1;
 
@@ -47,9 +47,9 @@ class ShippingAddress
 
     /**
      * @param string $line2
-     * @return ShippingAddress
+     * @return Address
      */
-    public function setLine2(string $line2): ShippingAddress
+    public function setLine2(string $line2): Address
     {
         $this->line2 = $line2;
 
@@ -58,9 +58,9 @@ class ShippingAddress
 
     /**
      * @param string $country
-     * @return ShippingAddress
+     * @return Address
      */
-    public function setCountry(string $country): ShippingAddress
+    public function setCountry(string $country): Address
     {
         $this->country = $country;
 
@@ -69,9 +69,9 @@ class ShippingAddress
 
     /**
      * @param string $city
-     * @return ShippingAddress
+     * @return Address
      */
-    public function setCity(string $city): ShippingAddress
+    public function setCity(string $city): Address
     {
         $this->city = $city;
 
@@ -80,9 +80,9 @@ class ShippingAddress
 
     /**
      * @param string $state
-     * @return ShippingAddress
+     * @return Address
      */
-    public function setState(string $state): ShippingAddress
+    public function setState(string $state): Address
     {
         $this->state = $state;
 
@@ -91,9 +91,9 @@ class ShippingAddress
 
     /**
      * @param string $postcode
-     * @return ShippingAddress
+     * @return Address
      */
-    public function setPostcode(string $postcode): ShippingAddress
+    public function setPostcode(string $postcode): Address
     {
         $this->postcode = $postcode;
 

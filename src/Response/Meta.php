@@ -10,12 +10,28 @@ class Meta
     /**
      * @var string
      */
-    protected $totalAmount;
+    protected string $totalAmount;
 
     /**
      * @var int
      */
-    protected $numPayments;
+    protected int $numPayments;
+
+    /**
+     * @return string
+     */
+    public function getTotalAmount(): string
+    {
+        return $this->totalAmount;
+    }
+
+    /**
+     * @return int
+     */
+    public function getNumPayments(): int
+    {
+        return $this->numPayments;
+    }
 
     /**
      * @param array $meta
@@ -27,18 +43,14 @@ class Meta
     }
 
     /**
-     * @return string
+     * To associated array
+     * 
+     * @return array
      */
-    public function getTotalAmount()
-    {
-        return $this->totalAmount;
-    }
-
-    /**
-     * @return int
-     */
-    public function getNumPayments()
-    {
-        return $this->numPayments;
+    public function toArray(): array {
+        return [
+            "numPayments"   => $this->getNumPayments(),
+            "totalAmount" => $this->getTotalAmount(),
+        ];
     }
 }

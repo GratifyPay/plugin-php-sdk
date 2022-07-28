@@ -12,11 +12,11 @@ class Request
 
     const SANDBOX_API_ENDPOINT = '';
 
-    const API_US_ENDPOINT = '';
-
-    const SANDBOX_API_US_ENDPOINT = '';
-
     const TYPE_CONTENT = '';
+
+    const VERSION = "1.1.0";
+
+    private $ch;
 
     /**
      * @var string
@@ -24,43 +24,61 @@ class Request
     protected $privateApiKey = '';
 
     /**
-     * @var bool
+     * @var string
      */
-    protected $isLive = false;
+    protected $merchantPublicId;
 
     /**
      * @var bool
      */
-    protected $isUS = false;
+    protected $prod = false;
 
-    private $ch;
+    /**
+     * @var string
+     */
+    protected $useragent = 'Grafity PHP SDK ' . self::VERSION;
 
     /**
      * List of errors -
      *
      * @var string[]
      */
-    protected $errors = array(
+    protected $errors = [
         400 => 'Bad Request -- Your request is invalid.',
         401 => 'Unauthorized -- Your API key is wrong.',
         404 => 'Not Found -- The payment request could not be found.',
         500 => 'Internal Server Error -- We had a problem with our server. Try again later.',
-    );
+    ];
 
     /**
-     * @var string
+     * @return bool
      */
-    protected $merchantPublicId;
+    public function isProd(): bool {
+        return $this->prod;
+    }
+
+    /**
+     * @return string
+     */
+    public function getUseragent(): string {
+        return $this->useragent;
+    }
+
+    /**
+     * @param string useragent
+     */
+    public function setUseragent(string $useragent): void {
+        $this->useragent = $useragent;
+    }
 
     /**
      * Request constructor.
      * @param $merchantPublicId
      * @param $privateApiKey
-     * @param bool $live
-     * @param bool $isUS
+     * @param bool $prod
      * @throws \Exception
      */
-    public function __construct($merchantPublicId, $privateApiKey, bool $live = false, bool $isUS = false)
+    public function __construct($merchantPublicId, $privateApiKey, bool $prod = false)
     {
         if (!extension_loaded('curl')) {
             throw new \Exception('For work with Glatify Api to need php curl extension');
@@ -68,8 +86,7 @@ class Request
 
         $this->merchantPublicId = $merchantPublicId;
         $this->privateApiKey = $privateApiKey;
-        $this->isLive = $live;
-        $this->isUS = $isUS;
+        $this->prod = $prod;
         $this->ch = curl_init();
     }
 
@@ -82,9 +99,7 @@ class Request
      */
     protected function request($type, $path, $request = [])
     {
-        $endpoint = $this->isUS
-            ? ($this->isLive ? static::API_US_ENDPOINT : static::SANDBOX_API_US_ENDPOINT)
-            : ($this->isLive ? static::API_ENDPOINT : static::SANDBOX_API_ENDPOINT);
+        $endpoint = ($this->prod ? static::API_ENDPOINT : static::SANDBOX_API_ENDPOINT);
 
         curl_setopt($this->ch, CURLOPT_URL, $endpoint . $path);
         curl_setopt($this->ch, CURLOPT_HEADER, false);
@@ -152,7 +167,7 @@ class Request
     protected function getHeaders($isJsonRequest)
     {
         $headers = [
-            'User-Agent: Grafity PHP SDK 1.2.2',
+            'User-Agent: ' . $this->useragent,
             'Authorization: Basic ' . base64_encode($this->merchantPublicId . ':' . $this->privateApiKey),
         ];
 
