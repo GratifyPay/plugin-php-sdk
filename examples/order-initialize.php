@@ -5,7 +5,7 @@ require_once dirname(__FILE__) . '/env.php';
 
 use GratifyPay\PhpSdk\Client;
 use GratifyPay\PhpSdk\Request\Item;
-use GratifyPay\PhpSdk\Request\OrderInitialize;
+use GratifyPay\PhpSdk\Request\InitOrder;
 use GratifyPay\PhpSdk\Address as ShippingAddress;
 
 try {

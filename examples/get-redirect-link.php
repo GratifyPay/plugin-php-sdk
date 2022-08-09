@@ -5,7 +5,7 @@ require_once dirname(__FILE__) . '/env.php';
 
 use GratifyPay\PhpSdk\Client;
 use GratifyPay\PhpSdk\Request\Item;
-use GratifyPay\PhpSdk\Request\OrderInitialize;
+use GratifyPay\PhpSdk\Request\InitOrder;
 use GratifyPay\PhpSdk\Address as ShippingAddress;
 
 try {
@@ -22,13 +22,13 @@ try {
         ->setState('New York')
         ->setPostcode('10001');
 
-    $order = new OrderInitialize();
+    $order = new InitOrder();
     $order->setReturnURL('https://example.com/return/link')
         ->setCallbackURL('https://example.com/callback/link')
         ->setFailureURL('https://example.com/failed/link')
         ->setMerchantReference(123)
         ->setStorePlatform('PRESTASHOP')
-        ->setShippingMethod(OrderInitialize::SHIPPING_METHOD)
+        ->setShippingMethod(InitOrder::SHIPPING_METHOD_DELIVERY)
         ->setShippingAddress($shippingAddress)
         ->setPriceSubTotal(100)
         ->setShippingTotal(10)

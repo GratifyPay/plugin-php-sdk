@@ -4,10 +4,7 @@ require_once dirname(__FILE__) . '/../vendor/autoload.php';
 require_once dirname(__FILE__) . '/env.php';
 
 use GratifyPay\PhpSdk\Client;
-use GratifyPay\PhpSdk\Request\Item;
-use GratifyPay\PhpSdk\Request\OrderInitialize;
 use GratifyPay\PhpSdk\Request\Refund;
-use GratifyPay\PhpSdk\Address as ShippingAddress;
 
 try {
     $client = new Client(
