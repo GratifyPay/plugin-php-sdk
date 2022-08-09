@@ -2,7 +2,8 @@
 
 namespace GratifyPay\PhpSdk;
 
-use GratifyPay\PhpSdk\Request\OrderInitialize as OrderInitializeRequest;
+use GratifyPay\PhpSdk\Request\InitOrder as OrderInitializeRequest;
+use GratifyPay\PhpSdk\Request\InitManualOrder;
 use GratifyPay\PhpSdk\Request\Refund as RefundRequest;
 use GratifyPay\PhpSdk\Response\ConfirmOrder;
 use GratifyPay\PhpSdk\Response\Refund as RefundResponse;
@@ -80,6 +81,22 @@ class Client extends Request
         );
 
         return new ConfirmOrder($result);
+    }
+
+    /**
+     *
+     * @param InitManualOrder $order
+     * @return string
+     * @throws \Exception
+     */
+    public function manualOrderInitialize(InitManualOrder $order): string
+    {
+        $result = $this->request(
+            'POST', 
+            '/merchant/ ' . $this->merchantPublicId . '/orderToken', $order
+        );
+
+        return $result['orderToken'];
     }
 
     /**

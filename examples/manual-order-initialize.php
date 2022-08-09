@@ -5,8 +5,7 @@ require_once dirname(__FILE__) . '/env.php';
 
 use GratifyPay\PhpSdk\Client;
 use GratifyPay\PhpSdk\Request\Item;
-use GratifyPay\PhpSdk\Request\InitOrder;
-use GratifyPay\PhpSdk\Address as ShippingAddress;
+use GratifyPay\PhpSdk\Request\InitManualOrder;
 
 try {
     $client = new Client(
@@ -15,20 +14,9 @@ try {
         IS_LIVE
     );
 
-    $shippingAddress = new ShippingAddress();
-    $shippingAddress->setCity('Brampton')
-        ->setCountry('CA')
-        ->setLine1('8 Automatic Rd #30')
-        ->setState('ON')
-        ->setPostcode('L6S 5N4');
-
-    $order = new InitOrder();
-    $order->setReturnURL('https://example.com/return/link')
-        ->setCallbackURL('https://example.com/callback/link')
-        ->setFailureURL('https://example.com/failure/url')
-        ->setShippingMethod(InitOrder::SHIPPING_METHOD_DELIVERY)
-        ->setShippingAddress($shippingAddress)
-        ->setStorePlatform('PRESTASHOP')
+    $order = new InitManualOrder();
+    $order->setShippingMethod(InitOrder::SHIPPING_METHOD_PICKUP)
+        ->setStorePlatform('WOOCOMMERCE')
         ->setMerchantReference(111)
         ->setPriceSubTotal(100)
         ->setShippingTotal(10)
@@ -52,8 +40,8 @@ try {
         ->setTitle('Test product 1');
     $order->setItem($item2);
 
-    $paymentSchedule = $client->orderInitialize($order);
-    print_r($paymentSchedule);
+    $order_token = $client->manualOrderInitialize($order);
+    print_r($order_token);
 
 } catch (\Exception $e) {
     print_r($e->getMessage());
