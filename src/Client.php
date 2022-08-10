@@ -13,18 +13,15 @@ use GratifyPay\PhpSdk\Response\PaymentSchedule;
 
 class Client extends Request
 {
-    //Production endpoints
+    // Production endpoints
     const API_ENDPOINT = 'https://api.gratifypay.com';
-
     const WEB_URL = 'https://app.gratifypay.com';
 
-    //Sandbox endpoints
-    //const SANDBOX_API_ENDPOINT = 'https://api.gratifypay.com';
-    const SANDBOX_API_ENDPOINT = 'https://api.dev.gratifypay.com';
+    // Sandbox endpoints
+    const SANDBOX_API_ENDPOINT = 'https://api.gratifypay.com';
+    const SANDBOX_WEB_URL = 'https://app.gratifypay.com';
 
-    //const SANDBOX_WEB_URL = 'https://app.gratifypay.com';
-    const SANDBOX_WEB_URL = 'https://app.dev.gratifypay.com';
-
+    // Content type
     const TYPE_CONTENT = 'application/json';
 
     /**
