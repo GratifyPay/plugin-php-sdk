@@ -25,6 +25,13 @@ class Client extends Request
     const TYPE_CONTENT = 'application/json';
 
     /**
+     * @return string
+     */
+    public function getWebUrl(): string {
+        return $this->prod ? WEB_URL : SANDBOX_WEB_URL;
+    }
+
+    /**
      * @return Merchant
      * @throws \Exception
      */
@@ -130,4 +137,6 @@ class Client extends Request
 
         return sprintf('%s/checkout?o=%s', $link, $orderMapId);
     }
+
+
 }
