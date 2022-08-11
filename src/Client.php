@@ -27,6 +27,13 @@ class Client extends Request
     /**
      * @return string
      */
+    public function getAPIEndpoint(): string {
+        return $this->prod ? API_ENDPOINT : SANDBOX_API_ENDPOINT;
+    }
+
+    /**
+     * @return string
+     */
     public function getWebUrl(): string {
         return $this->prod ? WEB_URL : SANDBOX_WEB_URL;
     }
