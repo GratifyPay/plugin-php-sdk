@@ -3,7 +3,13 @@
 namespace GratifyPay\PhpSdk;
 
 class Address
-{
+{   
+
+    /**
+     * @var string
+     */
+    public $name;
+    
     /**
      * @var string
      */
@@ -33,6 +39,18 @@ class Address
      * @var string
      */
     public $postcode;
+
+    /**
+     * @param string $name
+     * @return Address
+     */
+    public function setName(string $name): Address
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
 
     /**
      * @param string $line1
