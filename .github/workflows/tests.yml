@@ -1,0 +1,27 @@
+name: Run unit tests on PR
+
+on:
+  pull_request:
+    branches: 
+      - develop
+      - DEV-1266
+
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/setup-node@v2
+        with:
+          node-version: "16"
+          registry-url: https://npm.pkg.github.com/
+      - name: Check out code
+        uses: actions/checkout@v2
+        with:
+          ref: refs/heads/DEV-1266
+      - name: Install all dependencies & run unit tests
+        run: |
+          composer validate
+          composer install --ignore-platform-reqs
+          ./vendor/bin/phpunit --verbose tests/unit
+          
