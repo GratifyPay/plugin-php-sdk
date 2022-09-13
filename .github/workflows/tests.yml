@@ -4,7 +4,7 @@ on:
   pull_request:
     branches: 
       - develop
-      - DEV-1266
+      - main
 
 jobs:
   tests:
@@ -18,7 +18,7 @@ jobs:
       - name: Check out code
         uses: actions/checkout@v2
         with:
-          ref: refs/heads/DEV-1266
+          ref: refs/heads/develop
       - name: Install all dependencies & run unit tests
         run: |
           composer validate
