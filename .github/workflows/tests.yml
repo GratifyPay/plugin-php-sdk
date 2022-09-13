@@ -11,10 +11,6 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/setup-node@v2
-        with:
-          node-version: "16"
-          registry-url: https://npm.pkg.github.com/
       - name: Check out code
         uses: actions/checkout@v2
         with:
