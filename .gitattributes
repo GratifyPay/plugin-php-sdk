@@ -1,0 +1,10 @@
+/test export-ignore
+/examples export-ignore
+/docker export-ignore
+/build.sh export-ignore
+/vendor export-ignore
+composer.lock export-ignore
+*.zip export-ignore
+.git export-ignore
+.gitignore export-ignore
+.gitattributes export-ignore
