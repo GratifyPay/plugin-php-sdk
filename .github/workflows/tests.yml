@@ -1,0 +1,23 @@
+name: Run unit tests on PR
+
+on:
+  pull_request:
+    branches: 
+      - develop
+      - main
+
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v2
+        with:
+          ref: ${{ github.ref }}
+      - name: Install all dependencies & run unit tests
+        run: |
+          composer validate
+          composer install --ignore-platform-reqs
+          ./vendor/bin/phpunit --verbose tests/unit
+          
