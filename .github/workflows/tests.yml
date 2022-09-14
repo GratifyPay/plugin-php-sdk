@@ -14,7 +14,7 @@ jobs:
       - name: Check out code
         uses: actions/checkout@v2
         with:
-          ref: refs/heads/develop
+          ref: ${{ github.ref }}
       - name: Install all dependencies & run unit tests
         run: |
           composer validate
