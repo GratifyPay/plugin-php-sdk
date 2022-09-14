@@ -1,4 +1,4 @@
-/test export-ignore
+/tests export-ignore
 /examples export-ignore
 /docker export-ignore
 /build.sh export-ignore
