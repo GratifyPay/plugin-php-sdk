@@ -39,6 +39,27 @@ class Client extends Request
     }
 
     /**
+     * Check the connection
+     * 
+     * @return bool success connection or not
+     * @throws \Exception
+     */
+    public function checkConnection(): bool {
+        try {
+            $result = $this->getMerchant();
+        } 
+        catch (\Exception $e) {
+            return false;
+        }
+
+        if (!empty($result)) {
+            return true;
+        }
+
+        return false;
+    }
+
+    /**
      * @return Merchant
      * @throws \Exception
      */
