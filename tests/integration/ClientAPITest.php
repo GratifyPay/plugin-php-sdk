@@ -39,6 +39,14 @@ class ClientAPITest extends TestCase
         self::$client = null;
     }
 
+    public function testCheckApiHealth(): void
+    {
+        $status = self::$client->checkApiHealth();
+
+        $this->assertIsInt($status);
+        $this->assertEquals($status, 200);
+    }
+
     public function testGetMerchant(): void
     {
         $merchant = self::$client->getMerchant();
