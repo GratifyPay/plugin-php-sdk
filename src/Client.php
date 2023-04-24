@@ -42,7 +42,6 @@ class Client extends Request
      * Check the connection
      * 
      * @return bool success connection or not
-     * @throws \Exception
      */
     public function checkConnection(): bool {
         try {
@@ -57,6 +56,34 @@ class Client extends Request
         }
 
         return false;
+    }
+
+    /**
+     * Check the API health page
+     * 
+     * @param bool $fast 
+     * @param string $merchantId
+     * @return int HTTP status of 200 OK or 500 SERVER ERROR
+     */
+    public function checkApiHealth(bool $fast = true, string $merchantId = null): int
+    {
+        $return = 200;
+        try {
+            if(empty($merchantId)) {
+                $merchantId = $this->merchantPublicId;
+            }
+            $params = ['merchant_id' => $merchantId];
+            $result = $this->request('GET', '/health' . $fast ? '/fast' : '' . $this->formatParams($params));
+        } 
+        catch (\Exception $e) {
+            $return = 500;
+        }
+
+        if (empty($result)) {
+            $return = 500;
+        }
+
+        return $return;
     }
 
     /**
@@ -166,5 +193,15 @@ class Client extends Request
         return sprintf('%s/checkout?o=%s', $link, $orderMapId);
     }
 
+    /**
+     * Return $params as a Url formated parameter string
+     * 
+     * @param array $params
+     * @return string
+     */
+    private function formatParams(array $params = []) 
+    {
+        return !empty($params) ? '?' . http_build_query($params) : '';
+    }
 
 }
