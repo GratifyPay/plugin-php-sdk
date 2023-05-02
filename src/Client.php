@@ -73,7 +73,7 @@ class Client extends Request
                 $merchantId = $this->merchantPublicId;
             }
             $params = ['merchant_id' => $merchantId];
-            $result = $this->request('GET', '/health' . $fast ? '/fast' : '' . $this->formatParams($params));
+            $result = $this->request('GET', '/health' . ($fast ? '/fast' : '') . $this->formatParams($params));
         } 
         catch (\Exception $e) {
             $return = 500;
