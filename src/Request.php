@@ -14,7 +14,7 @@ class Request
 
     const TYPE_CONTENT = '';
 
-    const VERSION = "1.1.0";
+    const VERSION = "1.3.1";
 
     private $ch;
 

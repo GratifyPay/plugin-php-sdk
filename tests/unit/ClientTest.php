@@ -23,4 +23,14 @@ class ClientTest extends TestCase
         self::$client->setUseragent($useragent);
         $this->assertEquals(self::$client->getUseragent(), $useragent);
     }
+
+    public function testGetAPIEndpoint(): void
+    {
+        $this->assertEquals(self::$client->getAPIEndpoint(), Client::SANDBOX_API_ENDPOINT);
+    }
+
+    public function testGetWebUrl(): void
+    {
+        $this->assertEquals(self::$client->getWebUrl(), Client::SANDBOX_WEB_URL);
+    }
 }
