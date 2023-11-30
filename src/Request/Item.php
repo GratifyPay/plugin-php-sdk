@@ -38,6 +38,12 @@ class Item
      */
     public function setId($id): Item
     {
+        // enforce shoppingitem_ prefix
+        $prefix = 'shoppingitem_';
+        if(substr((string)$id, 0, strlen($prefix)) !== $prefix)
+        {
+            $id = 'shoppingitem_' . $id;    
+        }
         $this->id = $id;
 
         return $this;
